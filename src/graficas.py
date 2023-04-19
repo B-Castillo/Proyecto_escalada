@@ -17,20 +17,22 @@ def grad_max_country(df_, columna, original):
 
     df = scaler_country.copy()
 
-    # plt.bar(df[columna], df["grades_max"])
+    if original == "País":
+        sns.scatterplot(data=df, x=columna, y="grades_max")
 
-    sns.scatterplot(data=df, x=columna, y="grades_max")
+    else:
+        sns.regplot(x = df[columna], y = df["grades_max"],
+            color = "gray", 
+            marker = ".", 
+            scatter_kws = {"alpha": 0.4}, 
+            line_kws = {"color": "blue", "alpha": 0.7 })
 
-    # plt.plot(df["grades_max"], # eje x
-    #      df[columna])# eje y
 
     plt.title(f"Mediana de grados por {original}")
     plt.xlabel(original) # para poner etiqueta en el eje x
     plt.ylabel("Máximo Grado") # para poner etiqueta en el eje y
 
     plt.savefig("image/exlu.jpg", bbox_inches='tight')
-
-    # grafic.figure.savefig("images/comparacion_total.png")
 
 
 def dep_val(df_):
@@ -57,6 +59,40 @@ def dep_val(df_):
     # fig.delaxes(axes[0])
         
     plt.savefig("image/dep_val.jpg", bbox_inches='tight')
+
+def grad_mean(new_mon):
+    mountain_country = new_mon.groupby("pais")["grade_mean"].median().reset_index()
+    df = mountain_country.sort_values(by = "grade_mean", ascending=False).head(10)
+
+    fig = plt.figure(figsize = (30, 12))
+    
+
+    plt.bar(df["pais"], df["grade_mean"])
+
+    plt.title(f"Median de dificultad por Pais")
+    plt.xlabel("Paises") # para poner etiqueta en el eje x
+    plt.ylabel("Median Grado") # para poner etiqueta en el eje y
+
+    plt.savefig("image/grad_mean.jpg", bbox_inches='tight')
+
+def tarta_country(mon_limp):
+    explode = (0, 0.1 ,0.1, 0, 0, 0.1, 0, 0.1, 0.2, 0) # para sacar los quesitos hacia fuera
+
+    plt.pie(mon_limp['pais'],
+        labels = mon_limp["index"],
+        explode = explode)  # para sacar los quesitos hacia fuera
+
+    plt.title("Total montañas por pais") # para poner el título
+    plt.legend(bbox_to_anchor=(1.2, 1)) # sacar leyenda y donde colocarla. El primer índice (derecha-izquierda), segundo índice(arriba, abajo) )
+
+    # fig = plt.figure(figsize = (30, 15))
+
+    # px.pie(mon_limp, values='pais', names='index', 
+    #     title='Total montañas por pais', # poner el título de la figura
+    #     color_discrete_sequence = px.colors.sequential.haline, # para elegir la escala de colores
+    #     )
+
+    plt.savefig("image/tarta.jpg", bbox_inches='tight')
 
 def comp(df, pais1, pais2):
 

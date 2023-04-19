@@ -25,7 +25,7 @@ with col1:
     st.markdown('<h3>Montañas</h3>', unsafe_allow_html=True)
 
     st.markdown("""
-    |**cluster** | Agrupé las rutas en 9 clusters diferentes que pueden ser más o menos identificados como|
+    |**cluster** | Rutas en 9 clusters diferentes que pueden ser más o menos identificados como|
     |---|---|
     |0 | Rutas blandas|
     |1 | Rutas por alguna razón preferidas por mujeres|
@@ -38,7 +38,7 @@ with col1:
     |8 | Rutas muy famosas pero no tan repetidas y no tan tradicionales|""")
 
 with col2:
-    st.markdown('<h3>Scalador</h3>', unsafe_allow_html=True)
+    st.markdown('<h3>Ecalador</h3>', unsafe_allow_html=True)
 
     st.markdown("""
         date_first -> fecha de la primera ascensión
@@ -57,7 +57,11 @@ with col2:
 
         year_last -> año de la última ascensión""")
 
-    
+st.markdown('<h3>Tabla de dificultades de los grados de escalada</h3>', unsafe_allow_html=True)
+
+
+image = Image.open("image/dificultad.jpg")
+st.image(image, width=600)
 
 
 # 📋main.py

@@ -18,30 +18,12 @@ dif['grade_id'] = dif['grade_id'].astype('int64')
 mountain = pd.read_csv("data/routes2.csv", index_col=0)
 
 
-# st.write(name_bd)
-def limp(looc):
-    looc.strip("()")
-    looc.split(",")
+lista = mountain["pais"].unique()
 
-    return looc
-
-
-
-peleadores = []
-
-col1, col2, col3 = st.columns(3)
+col1, col2 = st.columns(2)
 
 with col1:
-    peso = st.number_input("Peso.", 40,140)
-
-with col2:
-    altura = st.number_input("Altura.", 100, 220)
-
-with col3:
-    edad = st.number_input("Edad.", 16, 100)
-
-with col1:
-    pais = st.text_input("Pais.", "")
+    pais = st.selectbox("Pais", lista)
 
 with col2:
     grade = st.selectbox("Dificultad ultima escalada.", ['5', '5a', '5a+', '5b', '5b+',
@@ -52,10 +34,8 @@ with col2:
        '8b+', '8b+/8c', '8c', '8c/+', '8c+', '8c+/9a', '9a', '9a/+',
        '9a+', '9a+/9b', '9b', '9b/+', '9b+', '9b+/9c', '9c', '9c/+',
        '9c+', '9c+/10a'])
-st.write(grade)
-grade2 = 0
-st.write(mountain.shape)
 
+grade2 = 0
 
 if  grade or pais!= "":
 
@@ -70,53 +50,11 @@ if  grade or pais!= "":
 
         opcion = mountain[((mountain["grade_mean"] < grade2+4) & (mountain["grade_mean"] > grade2-4)) & (mountain["pais"] == pais)]
 
-        st.write(opcion.head(10))
         
         df = opcion[["lat", "lon"]]
 
+        with st.spinner('Cargando datos... Espere un monento'):
+            st.map(df)
+            st.write(opcion.head(10))
 
-        st.map(df)
-    else:
-        st.write("parametros insuficientes.")
-
-else: 
-
-    st.write("...")
-    # with col2:
-    #     q_2 = f"""
-    #     select * from peleador
-    #     where peleador REGEXP "{peleador_b}";
-    #     """
-    #     df_2 = pd.read_sql(q_2, base)
-
-    #     options = df_2['peleador'].tolist()
-
-    #     peleador_2 =  st.selectbox("Elige el peleador", options)
-
-    #     st.write("Has elegido:", peleador_2)
-
-    # grafic = st.radio("Seleciona la gráfica que quieres analizar 👉", ["radar", "barplot", "img_golpeo"])
-
-    # if st.button("Visualizar"):
-
-#         peleadores.append(peleador_1)
-#         peleadores.append(peleador_2)
-
-#         if grafic == "radar":
-#             gr.comparate(peleadores, base)
-#             st.image("images/radar.png")
-
-#         elif grafic == "barplot":
-#             gr.stats(peleadores, base)
-#             st.image("images/comparacion_total.png")
-
-#         elif grafic == "img_golpeo":
-#             gr.m_golpeo(peleadores, base)
-#             st.image("images/golpeo.png")
-#         else:
-#             st.write("No se ha podido generar la gráfica 😢😢")
-            
-
-# else:
-#     st.write("Generando desplegable...")S
 

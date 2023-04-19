@@ -8,6 +8,8 @@ sys.path.append("../")
 
 import src.graficas as gr
 
+scaler = pd.read_csv("data/climber_df.csv", index_col=0)
+
 st.markdown('<h1>Los escaladores</h1>', unsafe_allow_html=True)
 
 image = Image.open("image/escalador.jpg")
@@ -31,8 +33,6 @@ def fun3():
     return graf3
 
 
-scaler = pd.read_csv("data/climber_df.csv", index_col=0)
-
 st.markdown('<h3>Que factores tienen relación con el nivel del escalador</h3>', unsafe_allow_html=True)
 
 st.sidebar.markdown('<h4>Filto para la condicion optima</h4>', unsafe_allow_html=True)
@@ -43,7 +43,17 @@ peso = st.sidebar.number_input("Peso", 40,140)
 xp = st.sidebar.number_input("Experiencia", 1,40)
 edad = st.sidebar.number_input("Edad", 5, 100)
 
-# if st.button("Descubrir más"):
+st.sidebar.markdown('<h4>Seleción de perfil para escaladores</h4>', unsafe_allow_html=True)
+
+lista = scaler["country"].unique()
+
+col1, col2 = st.sidebar.columns(2)
+
+with col1:
+    p1 = st.sidebar.selectbox("Pais 1", lista)
+
+with col2:
+    p2 = st.sidebar.selectbox("Pais 2", lista[::-1])
 
 with st.spinner('Cargando datos... Espere un monento'):
 
@@ -58,36 +68,10 @@ with st.spinner('Cargando datos... Espere un monento'):
 
     st.markdown('Se puede observar que hay paises con una que tiene a escaladores con marcas más altas, pero, ¿Sera por los parametros que emos determinado anteriormente como los mas optimos?', unsafe_allow_html=True)
 
-    st.sidebar.markdown('<h4>Seleción de perfil para escaladores</h4>', unsafe_allow_html=True)
-
-lista = scaler["country"].unique()
-
-col1, col2 = st.sidebar.columns(2)
-
-with col1:
-    p1 = st.sidebar.selectbox("Pais 1", lista)
-
-with col2:
-    p2 = st.sidebar.selectbox("Pais 2", lista[::-1])
-
 with st.spinner('Cargando datos... Espere un monento'):
 
     gig3 = fun3()
 
-    
-
-# if st.button("Siquente >>"):
-
-#     st.markdown('<h3>Sabiendo cuales son las más relevantes</h3>', unsafe_allow_html=True)
-#     st.markdown('<h3>¿Qué grupo tiene mayor capacidad?</h3>', unsafe_allow_html=True)
-
-#     columna = st.selectbox("Clasificación", ["Edad", "Mayor escaldo", "Peso"])
-
-#     if st.button("Ver"):
-#         mos()
-
-
-
-
-
-
+best_sacler = scaler[(scaler["age"] >= edad) & (scaler["weight"] >= peso) & (scaler["years_cl"] >= xp)]
+best_sacler = best_sacler[['grades_count', 'grades_first','grades_last', 'grades_max', 'grades_mean']]
+st.write(best_sacler)
