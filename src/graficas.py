@@ -2,6 +2,11 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+url = os.getenv("url")
 
 # librerías de visualización
 import seaborn as sns
@@ -146,9 +151,9 @@ def comp(df, pais1, pais2):
 
 
 def super_map():
-    # URL de la página web que deseas mostrar
-    url = os.getenv("url")
 
     # Mostrar página web en Streamlit usando un iframe
-    return st.components.v1.html(f'<iframe src="{url}" width="100%" height="600px"></iframe>', height=600)
+    mapa = st.components.v1.html(f'<iframe src="{url}" width="100%" height="600px"></iframe>', height=1100)
+
+    return mapa
 

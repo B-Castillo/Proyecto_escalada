@@ -3,8 +3,6 @@ import pandas as pd
 from PIL import Image
 from streamlit_folium import folium_static
 import folium
-import os
-
 
 
 import sys
@@ -65,7 +63,6 @@ def fun3(mon_limp_10):
 
 
 
-
 st.markdown('<h1>Montañas, escalada al aire libre</h1>', unsafe_allow_html=True)
 
 lista = new_mon["pais"].unique()
@@ -89,8 +86,6 @@ with st.spinner('Cargando datos... Espere un monento'):
     st.markdown('<h4>Ranking de dificultadad media</h4>', unsafe_allow_html=True)
     fun1(new_mon)
     st.markdown("---")
-    url = os.getenv("url")
-    gr.super_map()
 
 # w1 = Keplergl(height=400)
 # country_gdf = geopandas.read_file(url)
@@ -98,7 +93,8 @@ with st.spinner('Cargando datos... Espere un monento'):
 
 with st.spinner('Cargando datos... Espere un monento'):
     st.markdown('<h4>Tipos de rutas.</h4>', unsafe_allow_html=True)
-    fun2_1(new_mon, pais)
+    gr.super_map()
+    # fun2_1(new_mon, pais)
     st.markdown("---")
 
 
