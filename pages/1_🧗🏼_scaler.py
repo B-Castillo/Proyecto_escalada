@@ -13,7 +13,7 @@ scaler = pd.read_csv("data/climber_df.csv", index_col=0)
 st.markdown('<h1>Los escaladores</h1>', unsafe_allow_html=True)
 
 image = Image.open("image/escalador.jpg")
-st.image(image, width=900)
+st.image(image, width=1100)
 
 def fun1():
     gr.dep_val(scaler)

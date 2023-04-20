@@ -16,8 +16,8 @@ st.sidebar.success("Select a demo above.")
 
 st.markdown('<h1>Deporte de precisión</h1>', unsafe_allow_html=True)
 
-image = Image.open("image/roc.jpg")
-st.image(image, width=900)
+image = Image.open("image/montaña.jpg")
+st.image(image, width=1100)
 
 col1, col2 = st.columns(2)
 

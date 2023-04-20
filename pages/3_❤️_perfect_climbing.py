@@ -2,6 +2,8 @@
 import streamlit as st
 import pandas as pd
 from PIL import Image
+import requests
+from keplergl import KeplerGl
 
 
 import sys
@@ -10,8 +12,8 @@ import src.graficas as gr
 
 st.markdown('<h1>La montaña ideal</h1>', unsafe_allow_html=True)
 
-image = Image.open("image/montaña.jpg")
-st.image(image, width=900)
+image = Image.open("image/roc.jpg")
+st.image(image, width=1100)
 
 dif = pd.read_csv("data/grades_conversion_table.csv", index_col=0)
 dif['grade_id'] = dif['grade_id'].astype('int64')
@@ -52,6 +54,7 @@ if  grade or pais!= "":
 
         
         df = opcion[["lat", "lon"]]
+
 
         with st.spinner('Cargando datos... Espere un monento'):
             st.map(df)

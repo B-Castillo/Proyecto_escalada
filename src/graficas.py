@@ -1,10 +1,13 @@
 import numpy as np
 import pandas as pd
+import streamlit as st
+import os
 
 # librerías de visualización
 import seaborn as sns
 import matplotlib.pyplot as plt
 import plotly.express as px
+from keplergl import KeplerGl
 
 
 def grad_max_country(df_, columna, original):
@@ -61,7 +64,7 @@ def dep_val(df_):
     plt.savefig("image/dep_val.jpg", bbox_inches='tight')
 
 def grad_mean(new_mon):
-    mountain_country = new_mon.groupby("pais")["grade_mean"].median().reset_index()
+    mountain_country = new_mon.groupby("pais")["grade_mean"].mean().reset_index()
     df = mountain_country.sort_values(by = "grade_mean", ascending=False).head(10)
 
     fig = plt.figure(figsize = (30, 12))
@@ -76,6 +79,8 @@ def grad_mean(new_mon):
     plt.savefig("image/grad_mean.jpg", bbox_inches='tight')
 
 def tarta_country(mon_limp):
+    fig = plt.figure(figsize = (25, 12))
+
     explode = (0, 0.1 ,0.1, 0, 0, 0.1, 0, 0.1, 0.2, 0) # para sacar los quesitos hacia fuera
 
     plt.pie(mon_limp['pais'],
@@ -138,3 +143,12 @@ def comp(df, pais1, pais2):
     plt.legend()
     
     plt.savefig("image/comp.jpg", bbox_inches='tight')
+
+
+def super_map():
+    # URL de la página web que deseas mostrar
+    url = os.getenv("url")
+
+    # Mostrar página web en Streamlit usando un iframe
+    return st.components.v1.html(f'<iframe src="{url}" width="100%" height="600px"></iframe>', height=600)
+
