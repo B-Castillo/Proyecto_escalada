@@ -41,5 +41,5 @@ Además, se busca determinar si las diferencias geográficas pueden influir en l
 - [Kepler](https://kepler.gl/)
 
 # Agradecimientos
-    · Quiero agradecer a mis mentores, Ana y Jean, por enseñarme todo lo necesario para llevar a cabo este proyecto, y especialmente a César por guiarme y motivarme para continuar a pesar de mis grandes dudas. Muchas gracias.
+- Quiero agradecer a mis mentores, Ana y Jean, por enseñarme todo lo necesario para llevar a cabo este proyecto, y especialmente a César por guiarme y motivarme para continuar a pesar de mis grandes dudas. Muchas gracias.
 
