@@ -22,11 +22,11 @@ Además, se busca determinar si las diferencias geográficas pueden influir en l
 # Ruta a segir
 ---
 
-    · Ajustar los datos y complementarlos para poder tratar con ellos. Primero, debemos obtener la ubicación de las montañas que se van a analizar. Luego, es necesario adaptar la escala de dificultad de la ascensión a una que podamos utilizar para visualizar y analizar su influencia en relación con otros datos.
+- Ajustar los datos y complementarlos para poder tratar con ellos. Primero, debemos obtener la ubicación de las montañas que se van a analizar. Luego, es necesario adaptar la escala de dificultad de la ascensión a una que podamos utilizar para visualizar y analizar su influencia en relación con otros datos.
 
-    · Realizaremos un análisis para poder extraer las conclusiones deseadas, como los atributos más ventajosos para una ascensión, las ubicaciones de las ascensiones más aptas y si las diferencias geográficas pueden influir en la calidad de un escalador.
+- Realizaremos un análisis para poder extraer las conclusiones deseadas, como los atributos más ventajosos para una ascensión, las ubicaciones de las ascensiones más aptas y si las diferencias geográficas pueden influir en la calidad de un escalador.
 
-    · Crearemos una interfaz utilizando la biblioteca 'Streamlit' para presentar nuestras ideas y conclusiones.
+- Crearemos una interfaz utilizando la biblioteca 'Streamlit' para presentar nuestras ideas y conclusiones.
 ---
 # Librerias y herramientas
 
