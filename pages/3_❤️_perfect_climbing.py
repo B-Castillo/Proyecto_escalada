@@ -2,23 +2,31 @@
 import streamlit as st
 import pandas as pd
 from PIL import Image
-import requests
-from keplergl import KeplerGl
 
 
 import sys
 sys.path.append("../")
 import src.graficas as gr
 
-st.markdown('<h1>La montaña ideal</h1>', unsafe_allow_html=True)
+st.set_page_config(layout='wide')
 
-image = Image.open("image/roc.jpg")
-st.image(image, width=1100)
+# ---------------------------------------------------------Datos--------------------------------------------------------------
 
 dif = pd.read_csv("data/grades_conversion_table.csv", index_col=0)
 dif['grade_id'] = dif['grade_id'].astype('int64')
 mountain = pd.read_csv("data/routes2.csv", index_col=0)
 
+# --------------------------------------------------------Portada-----------------------------------------------------------
+
+
+st.markdown('<h1>La montaña ideal</h1>', unsafe_allow_html=True)
+
+image = Image.open("image/roc.jpg")
+st.image(image, width=1100)
+
+st.markdown("""Para finalizar este análisis, me gustaría agregar un filtro que te permita encontrar la montaña que necesitas.""")
+
+# --------------------------------------------------------Selectores-----------------------------------------------------------
 
 lista = mountain["pais"].unique()
 
@@ -39,6 +47,9 @@ with col2:
 
 grade2 = 0
 
+# --------------------------------------------------------Contenido-----------------------------------------------------------
+
+
 if  grade or pais!= "":
 
     if st.button("Montañas"):
@@ -58,6 +69,10 @@ if  grade or pais!= "":
 
         with st.spinner('Cargando datos... Espere un monento'):
             st.map(df)
-            st.write(opcion.head(10))
+
+            col1, col2, col3 = st.columns([1,8,1])
+            with col2:
+                st.write(opcion.head(10))
+
 
 

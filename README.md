@@ -1,21 +1,45 @@
 # Proyecto_escalada
+---
+<div style = "text-align: center;">
+    <img src="image/roc.jpg" width = "1000" height = "600">
+</div>
 
--Este proyecto viene de una gran afición a los deportes y especialmente a los que se hacen al aire libre, a lo largo del mundo hay una gran cantidad de aficionados a este gran deporte que es la escalada. El objetivo sera poder tener una claros cuales son los atributos más ventajosos a la hora de una ascensión con una mayor dificultad. También se busca saver en que lugares se encuntran las ascensiones más aptas a cada tipo de escalador y ver si las diferencia geograficas pueden influir en la calidad de un escalador.
 
--Los datos seran los siguientes:
+# Motivación
+---
 
-    Datos
+Este proyecto surge de una gran pasión por los deportes, especialmente aquellos que se practican al aire libre. La escalada es un deporte que requiere habilidades físicas y mucha técnica para escalar rocas, paredes y montañas. 
 
--La ruta a segir tiene unos puntos muy claros
+Cada vez son más los aficionados que se interesan por este deporte y, por ello, el objetivo de este proyecto es profundizar en los atributos más ventajosos para llevar a cabo una ascensión con mayor dificultad. 
 
-    · Ajustar los datos y complementarlos para poder tratar con ellos. Obtener la localizaciones de los montañas que tenemos, adaptar la escla de la dificultad de la ascensión a una que podamos utilizar a la hora de visualizar para poder analizar sus influencias respecto a los demas datos.
+Además, se busca determinar si las diferencias geográficas pueden influir en la calidad de un escalador. Cada región del mundo ofrece una variedad de rutas y paredes de escalada con características únicas.
 
-    · Hacer un analisi en el cual podamos sacar las conclusiónes deseadas (atributos más ventajosos, en que lugares se encuntran las ascensiones más aptas y si las diferencia geograficas pueden influir en la calidad de un escalador)
+---
+<div style = "text-align: center;">
+    <img src="image/ruta.jpg" width = "1000" height = "600">
+</div>
 
-    · Crear una interfaz para poder exponer estas ydeas y conclusiones con "streamlit".
+# Ruta a segir
+---
 
--Librerias
+    · Ajustar los datos y complementarlos para poder tratar con ellos. Primero, debemos obtener la ubicación de las montañas que se van a analizar. Luego, es necesario adaptar la escala de dificultad de la ascensión a una que podamos utilizar para visualizar y analizar su influencia en relación con otros datos.
 
--Agradecimientos:
-    · Muchas gracias a mis mentores Ana y Jean por enseñarme todo lo necesraio para poder llevar a cavo esta proyecto, y en especial a Cesar que me gío y me incencivo para poder seguír con el proyecto pues mis dudas siempre son grandes. Muchas gracias.
+    · Realizaremos un análisis para poder extraer las conclusiones deseadas, como los atributos más ventajosos para una ascensión, las ubicaciones de las ascensiones más aptas y si las diferencias geográficas pueden influir en la calidad de un escalador.
+
+    · Crearemos una interfaz utilizando la biblioteca 'Streamlit' para presentar nuestras ideas y conclusiones.
+---
+# Librerias y herramientas
+
+- [Numpy](https://numpy.org/)
+
+- [Pandas](https://pandas.pydata.org/)
+
+- [Plotly](https://plotly.com/)
+
+- [Streamlit](https://docs.streamlit.io/)
+
+- [Kepler](https://kepler.gl/)
+
+# Agradecimientos
+    · Quiero agradecer a mis mentores, Ana y Jean, por enseñarme todo lo necesario para llevar a cabo este proyecto, y especialmente a César por guiarme y motivarme para continuar a pesar de mis grandes dudas. Muchas gracias.
 

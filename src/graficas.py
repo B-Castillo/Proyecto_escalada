@@ -11,29 +11,24 @@ url = os.getenv("url")
 # librerías de visualización
 import seaborn as sns
 import matplotlib.pyplot as plt
-import plotly.express as px
-from keplergl import KeplerGl
 
 
 def grad_max_country(df_, columna, original):
-    scaler_country = df_.groupby(columna)["grades_max"].median().reset_index()
-    scaler_country = scaler_country.sort_values(by = "grades_max", ascending=False)
+    scaler_country2 = df_.groupby(columna)["grades_max"].median().reset_index()
+    scaler_country2 = scaler_country2[(scaler_country2[columna] != "other")].sort_values(by = "grades_max", ascending=False)
 
     plt.figure(figsize = (15, 6))
     
     # creación barplot
 
-    df = scaler_country.copy()
-
     if original == "País":
-        sns.scatterplot(data=df, x=columna, y="grades_max")
+        
+        sns.scatterplot(data=scaler_country2, x=columna, y="grades_max")
 
     else:
-        sns.regplot(x = df[columna], y = df["grades_max"],
-            color = "gray", 
-            marker = ".", 
-            scatter_kws = {"alpha": 0.4}, 
-            line_kws = {"color": "blue", "alpha": 0.7 })
+        scaler_country = df_.groupby([columna, "sex"])["grades_max"].median().reset_index()
+
+        sns.lmplot(data = scaler_country, x = columna, y = "grades_max", hue = "sex")
 
 
     plt.title(f"Mediana de grados por {original}")
@@ -41,6 +36,7 @@ def grad_max_country(df_, columna, original):
     plt.ylabel("Máximo Grado") # para poner etiqueta en el eje y
 
     plt.savefig("image/exlu.jpg", bbox_inches='tight')
+
 
 
 def dep_val(df_):
@@ -64,22 +60,23 @@ def dep_val(df_):
         axes[i].tick_params(labelsize = 20)
         axes[i].set_xlabel("")
         axes[i].set_ylabel("")
-    # fig.delaxes(axes[0])
         
     plt.savefig("image/dep_val.jpg", bbox_inches='tight')
 
 def grad_mean(new_mon):
     mountain_country = new_mon.groupby("pais")["grade_mean"].mean().reset_index()
-    df = mountain_country.sort_values(by = "grade_mean", ascending=False).head(10)
+    df = mountain_country.sort_values(by = "grade_mean", ascending=False).head(7)
 
-    fig = plt.figure(figsize = (30, 12))
+    fig = plt.figure(figsize = (35, 15))
     
 
     plt.bar(df["pais"], df["grade_mean"])
 
-    plt.title(f"Median de dificultad por Pais")
-    plt.xlabel("Paises") # para poner etiqueta en el eje x
-    plt.ylabel("Median Grado") # para poner etiqueta en el eje y
+    plt.title(f"Mediana de dificultad por Pais", fontsize = 25) # para poner titulo y tamaño de fuente
+    plt.xlabel("Paises", fontsize = 25) # para poner etiqueta en el eje x
+    plt.ylabel("Median Grado", fontsize = 25) # para poner etiqueta en el eje y
+    plt.xticks(fontsize=18) # para que la letra se vea más grande en el eje x
+    plt.yticks(fontsize=18) # para que la letra se vea más grande en el eje y
 
     plt.savefig("image/grad_mean.jpg", bbox_inches='tight')
 
@@ -128,7 +125,7 @@ def comp(df, pais1, pais2):
     angulos = np.linspace(start=0, stop=2 * np.pi, num=len(escalador_1))
     
     #Decidimos el tamaño de la figura.
-    plt.figure(figsize=(10, 10))
+    plt.figure(figsize=(20, 10))
     
     #Creamos el primer trazado de lineas, correspondiente al primer peleador.
     plt.polar(angulos, escalador_1, 'o-',
@@ -142,7 +139,7 @@ def comp(df, pais1, pais2):
     lines, labels = plt.thetagrids(np.degrees(angulos), labels=categorias)
     
     #Generamos ul titulo para la figura.
-    plt.title('Porcentaje de acierto', size=20, y=1.05)
+    plt.title(f'Caracteristicas de los escaladores de {pais1} contra {pais2}', size=20, y=1.05)
     
     #Y por ultimo generamos una leyenda para la figura.
     plt.legend()
@@ -153,7 +150,7 @@ def comp(df, pais1, pais2):
 def super_map():
 
     # Mostrar página web en Streamlit usando un iframe
-    mapa = st.components.v1.html(f'<iframe src="{url}" width="100%" height="600px"></iframe>', height=1100)
+    mapa = st.components.v1.html(f'<iframe src="{url}" width="100%" height="600px"></iframe>', height=650, width=1100)
 
     return mapa
 
